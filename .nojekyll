@@ -1,0 +1,2 @@
+# This file tells GitHub Pages not to process this repo with Jekyll.
+# Required for serving plain static sites without build steps.

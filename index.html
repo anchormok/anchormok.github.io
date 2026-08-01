@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zhuomao Mo 莫灼锚 — Cellular Immunotherapy & Hematology</title>
+  <meta name="description" content="Personal academic homepage of Zhuomao Mo (莫灼锚), postdoctoral researcher at Zhejiang University. Research on CAR-T / CAR-NK cell therapy and hematologic malignancies." />
+  <meta name="author" content="Zhuomao Mo" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ============ NAVBAR ============ -->
+  <header class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="brand">
+        <span class="brand-mark">ZM</span>
+        <span class="brand-name" data-i18n="nav.name">Zhuomao Mo</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#research" data-i18n="nav.research">Research</a>
+        <a href="#publications" data-i18n="nav.publications">Publications</a>
+        <a href="#news" data-i18n="nav.news">News</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+          <span class="lang-en">EN</span><span class="lang-divider">/</span><span class="lang-zh">中文</span>
+        </button>
+        <button class="nav-burger" id="navBurger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="hero-eyebrow" data-i18n="hero.eyebrow">Postdoctoral Researcher · Cellular Immunotherapy</p>
+        <h1 class="hero-title">
+          <span class="name-en">Zhuomao Mo</span>
+          <span class="name-zh">莫灼锚</span>
+        </h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          Bone Marrow Transplantation Center, First Affiliated Hospital &amp; Liangzhu Laboratory,
+          Zhejiang University School of Medicine
+        </p>
+        <p class="hero-tagline" data-i18n="hero.tagline">
+          Engineering chimeric antigen receptor T &amp; NK cells to transform the treatment of blood cancers.
+        </p>
+        <div class="hero-buttons">
+          <a href="#publications" class="btn btn-primary" data-i18n="hero.btnPapers">View Publications</a>
+          <a href="#contact" class="btn btn-ghost" data-i18n="hero.btnContact">Get in Touch</a>
+        </div>
+        <div class="hero-links">
+          <a href="#" id="linkScholar" class="chip" data-i18n="hero.linkScholar">Google Scholar</a>
+          <a href="#" id="linkPubMed" class="chip" data-i18n="hero.linkPubMed">PubMed</a>
+          <a href="#" id="linkORCID" class="chip" data-i18n="hero.linkOrcid">ORCID</a>
+          <a href="#" id="linkLoop" class="chip" data-i18n="hero.linkLoop">Loop</a>
+        </div>
+      </div>
+      <div class="hero-figure">
+        <div class="avatar-ring">
+          <img src="assets/avatar.svg" alt="Zhuomao Mo avatar" class="avatar" />
+          <span class="avatar-badge" title="Open to collaboration">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7v2H4a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1h-1V9a7 7 0 0 0-7-7Zm5 9H7V9a5 5 0 0 1 10 0v2Z"/></svg>
+          </span>
+        </div>
+        <div class="stat-card stat-card-1">
+          <span class="stat-num" id="statPapers">3+</span>
+          <span class="stat-label" data-i18n="hero.statPapers">Publications</span>
+        </div>
+        <div class="stat-card stat-card-2">
+          <span class="stat-num" id="statCites">148</span>
+          <span class="stat-label" data-i18n="hero.statCites">Citations</span>
+        </div>
+        <div class="stat-card stat-card-3">
+          <span class="stat-num" id="statH">2</span>
+          <span class="stat-label" data-i18n="hero.statH">h-index</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,64 C240,110 480,10 720,40 C960,70 1200,110 1440,60 L1440,120 L0,120 Z" fill="var(--surface)"/></svg>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="about.kicker">About</span>
+        <h2 class="section-title" data-i18n="about.title">About Me</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p data-i18n="about.p1">
+            I am a postdoctoral researcher at the Bone Marrow Transplantation Center of the First Affiliated
+            Hospital, Zhejiang University School of Medicine, and the Liangzhu Laboratory, where I work at the
+            interface of cellular immunotherapy and cancer genomics.
+          </p>
+          <p data-i18n="about.p2">
+            My work focuses on engineering chimeric antigen receptor (CAR) T and NK cells for hematologic
+            malignancies, integrating allogeneic transplantation with CAR-based bridging therapy, and applying
+            single-cell and spatial multi-omics to dissect the tumor immune microenvironment.
+          </p>
+          <p data-i18n="about.p3">
+            My research has been published in the <em>New England Journal of Medicine</em> and
+            <em>Cell Reports Medicine</em>, covering next-generation CAR-T strategies and iPSC-derived
+            "off-the-shelf" CAR-NK cells.
+          </p>
+          <div class="focus-chips">
+            <span class="chip chip-solid" data-i18n="about.chip1">CAR-T / CAR-NK</span>
+            <span class="chip chip-solid" data-i18n="about.chip2">AML &amp; T-ALL</span>
+            <span class="chip chip-solid" data-i18n="about.chip3">Single-cell omics</span>
+            <span class="chip chip-solid" data-i18n="about.chip4">Tumor immunology</span>
+          </div>
+        </div>
+        <div class="about-card">
+          <h3 class="about-card-title" data-i18n="about.cardTitle">Current Position</h3>
+          <ul class="info-list">
+            <li>
+              <span class="info-icon">🏛️</span>
+              <div>
+                <strong data-i18n="about.pos1Title">Postdoctoral Researcher</strong>
+                <span data-i18n="about.pos1Detail">Bone Marrow Transplantation Center, First Affiliated Hospital, Zhejiang University School of Medicine</span>
+              </div>
+            </li>
+            <li>
+              <span class="info-icon">🧬</span>
+              <div>
+                <strong data-i18n="about.pos2Title">Affiliated Lab</strong>
+                <span data-i18n="about.pos2Detail">Liangzhu Laboratory · Institute of Hematology, Zhejiang University</span>
+              </div>
+            </li>
+            <li>
+              <span class="info-icon">📍</span>
+              <div>
+                <strong data-i18n="about.pos3Title">Location</strong>
+                <span data-i18n="about.pos3Detail">Hangzhou, Zhejiang, China</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESEARCH ============ -->
+  <section class="section section-alt" id="research">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="research.kicker">Research</span>
+        <h2 class="section-title" data-i18n="research.title">Research Interests</h2>
+      </div>
+      <div class="research-grid">
+        <article class="research-card">
+          <div class="research-icon">🧫</div>
+          <h3 data-i18n="research.r1Title">Cellular Immunotherapy</h3>
+          <p data-i18n="research.r1Desc">Engineering next-generation CAR-T and CAR-NK cells for hematologic malignancies, including iPSC-derived universal cell products.</p>
+        </article>
+        <article class="research-card">
+          <div class="research-icon">🩸</div>
+          <h3 data-i18n="research.r2Title">Hematologic Malignancies</h3>
+          <p data-i18n="research.r2Desc">Acute myeloid leukemia, T-cell acute lymphoblastic leukemia/lymphoma, and B-cell lymphoma — biology and novel therapeutic strategies.</p>
+        </article>
+        <article class="research-card">
+          <div class="research-icon">🔬</div>
+          <h3 data-i18n="research.r3Title">Single-Cell &amp; Spatial Omics</h3>
+          <p data-i18n="research.r3Desc">Decoding the tumor immune microenvironment at single-cell and spatial resolution to guide immunotherapy design.</p>
+        </article>
+        <article class="research-card">
+          <div class="research-icon">🧠</div>
+          <h3 data-i18n="research.r4Title">Tumor Immunology</h3>
+          <p data-i18n="research.r4Desc">Mechanisms of immune evasion, myeloid cell biology, and the immunosuppressive microenvironment of blood cancers.</p>
+        </article>
+        <article class="research-card">
+          <div class="research-icon">🤖</div>
+          <h3 data-i18n="research.r5Title">Computational Biology &amp; ML</h3>
+          <p data-i18n="research.r5Desc">Biomarker discovery and prognostic modeling for precision medicine using multi-omics data and machine learning.</p>
+        </article>
+        <article class="research-card">
+          <div class="research-icon">🛡️</div>
+          <h3 data-i18n="research.r6Title">Transplant Immunology</h3>
+          <p data-i18n="research.r6Desc">Optimizing the integration of CAR-based therapy with allogeneic hematopoietic stem-cell transplantation.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PUBLICATIONS ============ -->
+  <section class="section" id="publications">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="pubs.kicker">Publications</span>
+        <h2 class="section-title" data-i18n="pubs.title">Selected Publications</h2>
+        <p class="section-note" data-i18n="pubs.note">
+          * Corresponding / contributing author shown in <strong>bold</strong>.
+        </p>
+      </div>
+      <div id="pubList" class="pub-list"></div>
+      <p class="pub-footnote" data-i18n="pubs.footnote">
+        For the most up-to-date list, see my Google Scholar profile.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ NEWS ============ -->
+  <section class="section section-alt" id="news">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="news.kicker">News</span>
+        <h2 class="section-title" data-i18n="news.title">News &amp; Updates</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <span class="timeline-date">2026</span>
+            <h3 data-i18n="news.n1Title">CD19 CAR-T long-term follow-up published</h3>
+            <p data-i18n="news.n1Desc">Our long-term follow-up study of CD19 CAR-T in relapsed/refractory B-cell NHL — identifying Ki-67 as a prognostic factor for sustained remission — is out in <em>Transplantation and Cellular Therapy</em>.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <span class="timeline-date">2025</span>
+            <h3 data-i18n="news.n2Title">iPSC-derived CAR-NK cells in Cell Reports Medicine</h3>
+            <p data-i18n="news.n2Desc">Our study on CD70-targeted iPSC-derived CAR-NK cells — potent against tumors and alloreactive T cells — was published in <em>Cell Reports Medicine</em>.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <span class="timeline-date">2024</span>
+            <h3 data-i18n="news.n3Title">Landmark study in the New England Journal of Medicine</h3>
+            <p data-i18n="news.n3Desc">Sequential CD7 CAR T-cell therapy followed by allogeneic HSCT without GVHD prophylaxis — a new paradigm for T-ALL/LBL — published in <em>NEJM</em>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="contact.kicker">Contact</span>
+        <h2 class="section-title" data-i18n="contact.title">Get in Touch</h2>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:zhuomao.mo@zju.edu.cn" id="contactEmail">
+          <span class="contact-icon">✉️</span>
+          <div>
+            <h3 data-i18n="contact.emailTitle">Email</h3>
+            <p id="contactEmailValue">zhuomao.mo@zju.edu.cn</p>
+          </div>
+        </a>
+        <a class="contact-card" href="#" id="linkScholarCard" target="_blank" rel="noopener">
+          <span class="contact-icon">🎓</span>
+          <div>
+            <h3 data-i18n="contact.scholarTitle">Google Scholar</h3>
+            <p data-i18n="contact.scholarDesc">Citations &amp; full profile</p>
+          </div>
+        </a>
+        <a class="contact-card" href="#" id="linkPubMedCard" target="_blank" rel="noopener">
+          <span class="contact-icon">📄</span>
+          <div>
+            <h3 data-i18n="contact.pubmedTitle">PubMed</h3>
+            <p data-i18n="contact.pubmedDesc">Indexed publications</p>
+          </div>
+        </a>
+        <a class="contact-card" href="#" id="linkOrcidCard" target="_blank" rel="noopener">
+          <span class="contact-icon">🆔</span>
+          <div>
+            <h3 data-i18n="contact.orcidTitle">ORCID</h3>
+            <p data-i18n="contact.orcidDesc">Researcher identifier</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p data-i18n="footer.copyright">© 2026 Zhuomao Mo (莫灼锚). All rights reserved.</p>
+      <p class="footer-note" data-i18n="footer.note">Designed &amp; built for an academic career in cellular immunotherapy.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
