@@ -33,6 +33,7 @@ const PUBS_FIRST_AUTHOR = [
   // Fields: role: true, roleEn, roleZh (shows a badge), authors (["Mo Z"] is bolded).
   {
     id: "jtcm2024",
+    module: "phd",
     title: "Integrating single-cell and spatial transcriptomics to elucidate the crosstalk between cancer-associated fibroblasts and cancer cells in hepatocellular carcinoma with spleen-deficiency syndrome",
     journal: "Journal of Traditional and Complementary Medicine",
     year: 2024,
@@ -52,6 +53,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "jtm2022",
+    module: "phd",
     title: "Single-cell transcriptomics reveals the role of Macrophage-Naïve CD4+ T cell interaction in the immunosuppressive microenvironment of primary liver carcinoma",
     journal: "Journal of Translational Medicine",
     year: 2022,
@@ -70,6 +72,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "hypoxic2021",
+    module: "phd",
     title: "Hypoxic Characteristic in the Immunosuppressive Microenvironment of Hepatocellular Carcinoma",
     journal: "Frontiers in Immunology",
     year: 2021,
@@ -88,6 +91,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "ahr2021",
+    module: "phd",
     title: "A Comprehensive Pan-Cancer Analysis of 33 Human Cancers Reveals the Immunotherapeutic Value of Aryl Hydrocarbon Receptor",
     journal: "Frontiers in Immunology",
     year: 2021,
@@ -106,6 +110,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "5mc2020",
+    module: "phd",
     title: "Novel Molecular Subtypes Associated With 5mC Methylation and Their Role in Hepatocellular Carcinoma Immunotherapy",
     journal: "Frontiers in Molecular Biosciences",
     year: 2020,
@@ -124,6 +129,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "ctnnb12020",
+    module: "phd",
     title: "An Integrative Analysis Reveals the Underlying Association Between CTNNB1 Mutation and Immunotherapy in Hepatocellular Carcinoma",
     journal: "Frontiers in Oncology",
     year: 2020,
@@ -142,6 +148,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "hypoxialuad2020",
+    module: "phd",
     title: "Identification of a Hypoxia-Associated Signature for Lung Adenocarcinoma",
     journal: "Frontiers in Genetics",
     year: 2020,
@@ -160,6 +167,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "mtorc12020",
+    module: "phd",
     title: "A Novel Signature Based on mTORC1 Pathway in Hepatocellular Carcinoma",
     journal: "Journal of Oncology",
     year: 2020,
@@ -178,6 +186,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "yinchen2020",
+    module: "phd",
     title: "An Integrative Analysis Reveals the Potential Mechanism between Herbal Medicine Yinchen and Immunoregulation in Hepatocellular Carcinoma",
     journal: "BioMed Research International",
     year: 2020,
@@ -196,6 +205,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "acl2020",
+    module: "masters",
     title: "Comparative Efficacy of Graft Options in Anterior Cruciate Ligament Reconstruction: A Systematic Review and Network Meta-Analysis",
     journal: "Arthroscopy, Sports Medicine, and Rehabilitation",
     year: 2020,
@@ -214,6 +224,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "cervicallamino2020",
+    module: "masters",
     title: "Comparison of three fixation modalities for unilateral open-door cervical laminoplasty: a systematic review and network meta-analysis",
     journal: "Neurosurgical Review",
     year: 2020,
@@ -232,6 +243,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "tuina2019",
+    module: "masters",
     title: "Comparisons of the Effectiveness and Safety of Tuina, Acupuncture, Traction, and Chinese Herbs for Lumbar Disc Herniation: A Systematic Review and Network Meta-Analysis",
     journal: "Evidence-Based Complementary and Alternative Medicine",
     year: 2019,
@@ -250,6 +262,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "exercisesurgery2018",
+    module: "masters",
     title: "Exercise therapy versus surgery for lumbar spinal stenosis: A systematic review and meta-analysis",
     journal: "Pakistan Journal of Medical Sciences",
     year: 2018,
@@ -268,6 +281,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "plif2018",
+    module: "masters",
     title: "Comparative effectiveness and safety of posterior lumbar interbody fusion, Coflex, Wallis, and X-stop for lumbar degenerative diseases: A systematic review and network meta-analysis",
     journal: "Clinical Neurology and Neurosurgery",
     year: 2018,
@@ -286,6 +300,7 @@ const PUBS_FIRST_AUTHOR = [
   },
   {
     id: "obliquepull2018",
+    module: "masters",
     title: "Comparison Between Oblique Pulling Spinal Manipulation and Other Treatments for Lumbar Disc Herniation: A Systematic Review and Meta-Analysis",
     journal: "Journal of Manipulative and Physiological Therapeutics",
     year: 2018,
@@ -547,6 +562,13 @@ const I18N = {
     "pubs.firstTitle": "First / Corresponding Author",
     "pubs.coauthTitle": "Co-author",
     "pubs.empty": "Publication list in preparation — check back soon.",
+    "pubs.moduleMasters": "Master's Phase · Network Meta-analysis",
+    "pubs.moduleMastersDesc": "Evidence-based medicine — systematic reviews & network meta-analyses (2018–2020)",
+    "pubs.modulePhd": "PhD Phase · HCC Immunology & Tumor Microenvironment",
+    "pubs.modulePhdDesc": "HCC immunology — bioinformatics, single-cell & spatial omics, tumor microenvironment (2020–2024)",
+    "pubs.modulePostdoc": "Postdoctoral Phase · Cellular Immunotherapy",
+    "pubs.modulePostdocDesc": "CAR-T / CAR-NK cell therapy for hematologic malignancies",
+    "pubs.moduleEmpty": "First/corresponding-author publications in preparation.",
     "pubs.footnote": "For the most up-to-date list, see my Google Scholar profile.",
     "news.kicker": "News",
     "news.title": "News & Updates",
@@ -623,6 +645,13 @@ const I18N = {
     "pubs.firstTitle": "第一作者 / 通讯作者",
     "pubs.coauthTitle": "合作作者",
     "pubs.empty": "论文清单整理中，敬请期待。",
+    "pubs.moduleMasters": "硕士阶段 · 网状Meta分析",
+    "pubs.moduleMastersDesc": "循证医学——系统评价与网状Meta分析（2018–2020）",
+    "pubs.modulePhd": "博士阶段 · HCC免疫与肿瘤微环境",
+    "pubs.modulePhdDesc": "HCC免疫学——生物信息学、单细胞与空间组学、肿瘤微环境（2020–2024）",
+    "pubs.modulePostdoc": "博士后阶段 · 细胞免疫治疗",
+    "pubs.modulePostdocDesc": "血液肿瘤的CAR-T / CAR-NK细胞免疫治疗",
+    "pubs.moduleEmpty": "第一/通讯作者论文整理中，敬请期待。",
     "pubs.footnote": "最新完整列表请见我的 Google Scholar 主页。",
     "news.kicker": "动态",
     "news.title": "最新动态",
@@ -724,20 +753,42 @@ function pubCard(p, lang) {
   );
 }
 
-function renderPubCategory(titleKey, pubs, lang) {
-  let html = '<h3 class="pub-cat-title">' + I18N[lang][titleKey] + "</h3>";
-  if (!pubs.length) {
-    html += '<p class="pub-empty">' + I18N[lang]["pubs.empty"] + "</p>";
-  } else {
-    html += '<div class="pub-list">' + pubs.map((p) => pubCard(p, lang)).join("") + "</div>";
-  }
+const PUB_MODULES = [
+  { key: "masters", titleKey: "pubs.moduleMasters", descKey: "pubs.moduleMastersDesc" },
+  { key: "phd", titleKey: "pubs.modulePhd", descKey: "pubs.modulePhdDesc" },
+  { key: "postdoc", titleKey: "pubs.modulePostdoc", descKey: "pubs.modulePostdocDesc" }
+];
+
+function renderModulePubs(pubs, lang) {
+  const grouped = { masters: [], phd: [], postdoc: [] };
+  pubs.forEach((p) => {
+    const k = p.module && grouped[p.module] ? p.module : "postdoc";
+    grouped[k].push(p);
+  });
+  let html = "";
+  PUB_MODULES.forEach((m) => {
+    const items = grouped[m.key];
+    html += '<div class="pub-module">';
+    html += '<div class="pub-module-head">';
+    html += "<h4>" + I18N[lang][m.titleKey] + "</h4>";
+    html += "<p>" + I18N[lang][m.descKey] + "</p>";
+    html += "</div>";
+    html += items.length
+      ? '<div class="pub-list">' + items.map((p) => pubCard(p, lang)).join("") + "</div>"
+      : '<p class="pub-empty">' + I18N[lang]["pubs.moduleEmpty"] + "</p>";
+    html += "</div>";
+  });
   return html;
 }
 
 function renderPublications(lang) {
-  $("#pubList").innerHTML =
-    renderPubCategory("pubs.firstTitle", PUBS_FIRST_AUTHOR, lang) +
-    renderPubCategory("pubs.coauthTitle", PUBS_COAUTHOR, lang);
+  let html = '<h3 class="pub-cat-title">' + I18N[lang]["pubs.firstTitle"] + "</h3>";
+  html += renderModulePubs(PUBS_FIRST_AUTHOR, lang);
+  html += '<h3 class="pub-cat-title">' + I18N[lang]["pubs.coauthTitle"] + "</h3>";
+  html += PUBS_COAUTHOR.length
+    ? '<div class="pub-list">' + PUBS_COAUTHOR.map((p) => pubCard(p, lang)).join("") + "</div>"
+    : '<p class="pub-empty">' + I18N[lang]["pubs.empty"] + "</p>";
+  $("#pubList").innerHTML = html;
 }
 
 /* ------------------------------------------------------------
