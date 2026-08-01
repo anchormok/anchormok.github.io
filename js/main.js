@@ -562,12 +562,15 @@ const I18N = {
     "pubs.firstTitle": "First / Corresponding Author",
     "pubs.coauthTitle": "Co-author",
     "pubs.empty": "Publication list in preparation — check back soon.",
-    "pubs.moduleMasters": "Master's Phase · Network Meta-analysis",
-    "pubs.moduleMastersDesc": "Evidence-based medicine — systematic reviews & network meta-analyses (2018–2020)",
-    "pubs.modulePhd": "PhD Phase · HCC Immunology & Tumor Microenvironment",
-    "pubs.modulePhdDesc": "HCC immunology — bioinformatics, single-cell & spatial omics, tumor microenvironment (2020–2024)",
     "pubs.modulePostdoc": "Postdoctoral Phase · Cellular Immunotherapy",
+    "pubs.modulePostdocPeriod": "Sep 2022 – present",
     "pubs.modulePostdocDesc": "CAR-T / CAR-NK cell therapy for hematologic malignancies",
+    "pubs.modulePhd": "PhD Phase · HCC Immunology & Tumor Microenvironment",
+    "pubs.modulePhdPeriod": "Sep 2019 – Aug 2022",
+    "pubs.modulePhdDesc": "HCC immunology — bioinformatics, single-cell & spatial omics, tumor microenvironment",
+    "pubs.moduleMasters": "Master's Phase · Network Meta-analysis",
+    "pubs.moduleMastersPeriod": "Sep 2016 – Jun 2019",
+    "pubs.moduleMastersDesc": "Evidence-based medicine — systematic reviews & network meta-analyses",
     "pubs.moduleEmpty": "First/corresponding-author publications in preparation.",
     "pubs.footnote": "For the most up-to-date list, see my Google Scholar profile.",
     "news.kicker": "News",
@@ -645,12 +648,15 @@ const I18N = {
     "pubs.firstTitle": "第一作者 / 通讯作者",
     "pubs.coauthTitle": "合作作者",
     "pubs.empty": "论文清单整理中，敬请期待。",
-    "pubs.moduleMasters": "硕士阶段 · 网状Meta分析",
-    "pubs.moduleMastersDesc": "循证医学——系统评价与网状Meta分析（2018–2020）",
-    "pubs.modulePhd": "博士阶段 · HCC免疫与肿瘤微环境",
-    "pubs.modulePhdDesc": "HCC免疫学——生物信息学、单细胞与空间组学、肿瘤微环境（2020–2024）",
     "pubs.modulePostdoc": "博士后阶段 · 细胞免疫治疗",
+    "pubs.modulePostdocPeriod": "2022年9月至今",
     "pubs.modulePostdocDesc": "血液肿瘤的CAR-T / CAR-NK细胞免疫治疗",
+    "pubs.modulePhd": "博士阶段 · HCC免疫与肿瘤微环境",
+    "pubs.modulePhdPeriod": "2019年9月–2022年8月",
+    "pubs.modulePhdDesc": "HCC免疫学——生物信息学、单细胞与空间组学、肿瘤微环境",
+    "pubs.moduleMasters": "硕士阶段 · 网状Meta分析",
+    "pubs.moduleMastersPeriod": "2016年9月–2019年6月",
+    "pubs.moduleMastersDesc": "循证医学——系统评价与网状Meta分析",
     "pubs.moduleEmpty": "第一/通讯作者论文整理中，敬请期待。",
     "pubs.footnote": "最新完整列表请见我的 Google Scholar 主页。",
     "news.kicker": "动态",
@@ -754,13 +760,13 @@ function pubCard(p, lang) {
 }
 
 const PUB_MODULES = [
-  { key: "masters", titleKey: "pubs.moduleMasters", descKey: "pubs.moduleMastersDesc" },
-  { key: "phd", titleKey: "pubs.modulePhd", descKey: "pubs.modulePhdDesc" },
-  { key: "postdoc", titleKey: "pubs.modulePostdoc", descKey: "pubs.modulePostdocDesc" }
+  { key: "postdoc", titleKey: "pubs.modulePostdoc", descKey: "pubs.modulePostdocDesc", periodKey: "pubs.modulePostdocPeriod" },
+  { key: "phd", titleKey: "pubs.modulePhd", descKey: "pubs.modulePhdDesc", periodKey: "pubs.modulePhdPeriod" },
+  { key: "masters", titleKey: "pubs.moduleMasters", descKey: "pubs.moduleMastersDesc", periodKey: "pubs.moduleMastersPeriod" }
 ];
 
 function renderModulePubs(pubs, lang) {
-  const grouped = { masters: [], phd: [], postdoc: [] };
+  const grouped = { postdoc: [], phd: [], masters: [] };
   pubs.forEach((p) => {
     const k = p.module && grouped[p.module] ? p.module : "postdoc";
     grouped[k].push(p);
@@ -768,15 +774,19 @@ function renderModulePubs(pubs, lang) {
   let html = "";
   PUB_MODULES.forEach((m) => {
     const items = grouped[m.key];
-    html += '<div class="pub-module">';
-    html += '<div class="pub-module-head">';
+    html += '<details class="pub-module" id="mod-' + m.key + '">';
+    html += '<summary class="pub-module-head">';
+    html += '<span class="pub-module-caret" aria-hidden="true"></span>';
     html += "<h4>" + I18N[lang][m.titleKey] + "</h4>";
-    html += "<p>" + I18N[lang][m.descKey] + "</p>";
-    html += "</div>";
+    html += '<span class="pub-module-period">' + I18N[lang][m.periodKey] + "</span>";
+    html += "</summary>";
+    html += '<div class="pub-module-body">';
+    html += "<p class=\"pub-module-desc\">" + I18N[lang][m.descKey] + "</p>";
     html += items.length
       ? '<div class="pub-list">' + items.map((p) => pubCard(p, lang)).join("") + "</div>"
       : '<p class="pub-empty">' + I18N[lang]["pubs.moduleEmpty"] + "</p>";
     html += "</div>";
+    html += "</details>";
   });
   return html;
 }
@@ -785,9 +795,8 @@ function renderPublications(lang) {
   let html = '<h3 class="pub-cat-title">' + I18N[lang]["pubs.firstTitle"] + "</h3>";
   html += renderModulePubs(PUBS_FIRST_AUTHOR, lang);
   html += '<h3 class="pub-cat-title">' + I18N[lang]["pubs.coauthTitle"] + "</h3>";
-  html += PUBS_COAUTHOR.length
-    ? '<div class="pub-list">' + PUBS_COAUTHOR.map((p) => pubCard(p, lang)).join("") + "</div>"
-    : '<p class="pub-empty">' + I18N[lang]["pubs.empty"] + "</p>";
+  // Only the top 3 co-authored papers are shown
+  html += '<div class="pub-list">' + PUBS_COAUTHOR.slice(0, 3).map((p) => pubCard(p, lang)).join("") + "</div>";
   $("#pubList").innerHTML = html;
 }
 
