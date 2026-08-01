@@ -19,15 +19,292 @@ const PROFILE = {
    2) METRICS — update as Google Scholar grows
    ------------------------------------------------------------ */
 const METRICS = {
-  papers: "3+",
-  citations: "148",
-  hIndex: "2",
+  papers: "18",      // 15 first/corresponding + 3 co-author
+  citations: "499",  // sum of Semantic Scholar counts (update as they grow)
+  hIndex: "13",
 };
 
 /* ------------------------------------------------------------
-   3) PUBLICATIONS — add new papers to the top of this array
+   3) PUBLICATIONS — two groups:
+      PUBS_FIRST_AUTHOR : first-author / corresponding-author papers
+      PUBS_COAUTHOR     : co-authored papers
    ------------------------------------------------------------ */
-const PUBLICATIONS = [
+const PUBS_FIRST_AUTHOR = [
+  // Fields: role: true, roleEn, roleZh (shows a badge), authors (["Mo Z"] is bolded).
+  {
+    id: "jtcm2024",
+    title: "Integrating single-cell and spatial transcriptomics to elucidate the crosstalk between cancer-associated fibroblasts and cancer cells in hepatocellular carcinoma with spleen-deficiency syndrome",
+    journal: "Journal of Traditional and Complementary Medicine",
+    year: 2024,
+    volume: "14(3): 321–334",
+    doi: "10.1016/j.jtcme.2023.11.008",
+    pmid: "38707923",
+    pmc: "PMC11068993",
+    citations: 7,
+    featured: false,
+    role: true,
+    roleEn: "Corresponding author",
+    roleZh: "通讯作者",
+    authors: ["Chen Q", "Luo J", "Liu J", "Yu H", "Zhou M", "Yu L", "Chen Y", "Zhang S", "Mo Z"],
+    tags: ["HCC", "Single-cell", "Spatial transcriptomics", "CAF"],
+    summaryEn: "Integrated single-cell and spatial transcriptomics to dissect the crosstalk between cancer-associated fibroblasts (CAFs) and cancer cells in hepatocellular carcinoma (HCC) with spleen-deficiency syndrome, revealing a PDGF-driven CAF-cancer cell axis that remodels the extracellular matrix and blocks immune infiltration.",
+    summaryZh: "整合单细胞与空间转录组学，解析脾虚证肝细胞癌中癌症相关成纤维细胞（CAF）与癌细胞之间的相互作用，揭示PDGF驱动的CAF-癌细胞轴通过重塑细胞外基质、形成物理屏障阻断免疫细胞浸润。"
+  },
+  {
+    id: "jtm2022",
+    title: "Single-cell transcriptomics reveals the role of Macrophage-Naïve CD4+ T cell interaction in the immunosuppressive microenvironment of primary liver carcinoma",
+    journal: "Journal of Translational Medicine",
+    year: 2022,
+    volume: "20(1): 466",
+    doi: "10.1186/s12967-022-03675-2",
+    pmid: "36221095",
+    citations: 30,
+    featured: true,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Liu D", "Chen Y", "Luo J", "Li W", "Liu J", "Yu L", "Huang B", "Zhang S"],
+    tags: ["HCC", "Single-cell", "T cell", "Tumor microenvironment"],
+    summaryEn: "Used single-cell transcriptomics to map the immunosuppressive microenvironment of primary liver carcinoma, revealing that macrophage–naïve CD4+ T cell interactions shape immune suppression and correlate with poor prognosis.",
+    summaryZh: "利用单细胞转录组学绘制原发性肝癌的免疫抑制微环境，揭示巨噬细胞与初始CD4+ T细胞的相互作用参与免疫抑制并与不良预后相关。"
+  },
+  {
+    id: "hypoxic2021",
+    title: "Hypoxic Characteristic in the Immunosuppressive Microenvironment of Hepatocellular Carcinoma",
+    journal: "Frontiers in Immunology",
+    year: 2021,
+    volume: "12: 611058",
+    doi: "10.3389/fimmu.2021.611058",
+    pmid: "33679749",
+    citations: 30,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Liu D", "Rong D", "Zhang S"],
+    tags: ["HCC", "Hypoxia", "Immunosuppression"],
+    summaryEn: "Characterized hypoxia-related features of the immunosuppressive tumor microenvironment in hepatocellular carcinoma and identified hypoxia-associated immune infiltration patterns.",
+    summaryZh: "刻画肝细胞癌免疫抑制微环境中的缺氧特征，并识别与缺氧相关的免疫细胞浸润模式。"
+  },
+  {
+    id: "ahr2021",
+    title: "A Comprehensive Pan-Cancer Analysis of 33 Human Cancers Reveals the Immunotherapeutic Value of Aryl Hydrocarbon Receptor",
+    journal: "Frontiers in Immunology",
+    year: 2021,
+    volume: "12: 564948",
+    doi: "10.3389/fimmu.2021.564948",
+    pmid: "34290693",
+    citations: 13,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Li P", "Cao Z", "Zhang S"],
+    tags: ["Pan-cancer", "AHR", "Immunotherapy"],
+    summaryEn: "Performed a comprehensive pan-cancer analysis across 33 cancer types to reveal the immunotherapeutic value of the aryl hydrocarbon receptor (AHR).",
+    summaryZh: "对33种癌症进行全面的泛癌分析，揭示芳香烃受体（AHR）的免疫治疗价值。"
+  },
+  {
+    id: "5mc2020",
+    title: "Novel Molecular Subtypes Associated With 5mC Methylation and Their Role in Hepatocellular Carcinoma Immunotherapy",
+    journal: "Frontiers in Molecular Biosciences",
+    year: 2020,
+    volume: "7: 562441",
+    doi: "10.3389/fmolb.2020.562441",
+    pmid: "33195409",
+    citations: 13,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Cao Z", "Luo S", "Chen Y", "Zhang S"],
+    tags: ["HCC", "5mC methylation", "Immunotherapy"],
+    summaryEn: "Identified novel molecular subtypes of hepatocellular carcinoma based on 5-methylcytosine (5mC) methylation and explored their role in immunotherapy response.",
+    summaryZh: "基于5-甲基胞嘧啶（5mC）甲基化识别肝细胞癌的新型分子亚型，并探索其在免疫治疗应答中的作用。"
+  },
+  {
+    id: "ctnnb12020",
+    title: "An Integrative Analysis Reveals the Underlying Association Between CTNNB1 Mutation and Immunotherapy in Hepatocellular Carcinoma",
+    journal: "Frontiers in Oncology",
+    year: 2020,
+    volume: "10: 853",
+    doi: "10.3389/fonc.2020.00853",
+    pmid: "32596147",
+    citations: 13,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Wang Y", "Cao Z", "Li P", "Zhang S"],
+    tags: ["HCC", "CTNNB1", "Immunotherapy"],
+    summaryEn: "Revealed the association between CTNNB1 mutation and the immune microenvironment and immunotherapy response in hepatocellular carcinoma.",
+    summaryZh: "揭示肝细胞癌中CTNNB1突变与免疫微环境及免疫治疗应答之间的关联。"
+  },
+  {
+    id: "hypoxialuad2020",
+    title: "Identification of a Hypoxia-Associated Signature for Lung Adenocarcinoma",
+    journal: "Frontiers in Genetics",
+    year: 2020,
+    volume: "11: 647",
+    doi: "10.3389/fgene.2020.00647",
+    pmid: "32655624",
+    citations: 67,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Yu L", "Cao Z", "Hu H", "Luo S", "Zhang S"],
+    tags: ["LUAD", "Hypoxia", "Prognostic signature"],
+    summaryEn: "Developed a hypoxia-associated gene signature for prognostic stratification of lung adenocarcinoma.",
+    summaryZh: "构建肺腺癌的缺氧相关基因签名，用于预后分层。"
+  },
+  {
+    id: "mtorc12020",
+    title: "A Novel Signature Based on mTORC1 Pathway in Hepatocellular Carcinoma",
+    journal: "Journal of Oncology",
+    year: 2020,
+    volume: "2020: 8291036",
+    doi: "10.1155/2020/8291036",
+    pmid: "33014055",
+    citations: 8,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Zhang S", "Zhang S"],
+    tags: ["HCC", "mTORC1", "Prognostic signature"],
+    summaryEn: "Constructed a novel prognostic signature based on the mTORC1 pathway in hepatocellular carcinoma.",
+    summaryZh: "基于mTORC1通路构建肝细胞癌的新型预后签名。"
+  },
+  {
+    id: "yinchen2020",
+    title: "An Integrative Analysis Reveals the Potential Mechanism between Herbal Medicine Yinchen and Immunoregulation in Hepatocellular Carcinoma",
+    journal: "BioMed Research International",
+    year: 2020,
+    volume: "2020: 8886914",
+    doi: "10.1155/2020/8886914",
+    pmid: "33457419",
+    citations: 11,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Cao Z", "Yu L", "Wang Y", "Li P", "Lin Y", "Zhang S"],
+    tags: ["HCC", "Yinchen", "Immunoregulation"],
+    summaryEn: "Integrative analysis revealing the potential mechanism by which the herbal medicine Yinchen modulates immunoregulation in hepatocellular carcinoma.",
+    summaryZh: "整合分析揭示中药茵陈（Yinchen）调节肝细胞癌免疫调控的潜在机制。"
+  },
+  {
+    id: "acl2020",
+    title: "Comparative Efficacy of Graft Options in Anterior Cruciate Ligament Reconstruction: A Systematic Review and Network Meta-Analysis",
+    journal: "Arthroscopy, Sports Medicine, and Rehabilitation",
+    year: 2020,
+    volume: "2(5): e645–e654",
+    doi: "10.1016/j.asmr.2020.05.007",
+    pmid: "33135006",
+    citations: 25,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Li D", "Yang B", "Tang S"],
+    tags: ["ACL reconstruction", "Network meta-analysis"],
+    summaryEn: "Network meta-analysis comparing the efficacy of different graft options in anterior cruciate ligament reconstruction.",
+    summaryZh: "通过网状Meta分析比较前交叉韧带重建中不同移植物选择的疗效。"
+  },
+  {
+    id: "cervicallamino2020",
+    title: "Comparison of three fixation modalities for unilateral open-door cervical laminoplasty: a systematic review and network meta-analysis",
+    journal: "Neurosurgical Review",
+    year: 2020,
+    volume: "43: 813–823",
+    doi: "10.1007/s10143-018-1035-0",
+    pmid: "30259268",
+    citations: 11,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Li D", "Zhang R", "Chang M", "Yang B", "Tang S"],
+    tags: ["Cervical laminoplasty", "Spine surgery", "Network meta-analysis"],
+    summaryEn: "Systematic review and network meta-analysis comparing three fixation modalities for unilateral open-door cervical laminoplasty.",
+    summaryZh: "系统综述与网状Meta分析比较单开门颈椎椎板成形术的三种固定方式。"
+  },
+  {
+    id: "tuina2019",
+    title: "Comparisons of the Effectiveness and Safety of Tuina, Acupuncture, Traction, and Chinese Herbs for Lumbar Disc Herniation: A Systematic Review and Network Meta-Analysis",
+    journal: "Evidence-Based Complementary and Alternative Medicine",
+    year: 2019,
+    volume: "2019: 6821310",
+    doi: "10.1155/2019/6821310",
+    pmid: "31015852",
+    citations: 51,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Li D", "Zhang R", "Chang M", "Yang B", "Tang S"],
+    tags: ["TCM", "Lumbar disc herniation", "Network meta-analysis"],
+    summaryEn: "Network meta-analysis comparing the effectiveness and safety of Tuina, acupuncture, traction, and Chinese herbs for lumbar disc herniation.",
+    summaryZh: "网状Meta分析比较推拿、针刺、牵引与中药治疗腰椎间盘突出症的有效性与安全性。"
+  },
+  {
+    id: "exercisesurgery2018",
+    title: "Exercise therapy versus surgery for lumbar spinal stenosis: A systematic review and meta-analysis",
+    journal: "Pakistan Journal of Medical Sciences",
+    year: 2018,
+    volume: "34(4): 879–885",
+    doi: "10.12669/pjms.344.14349",
+    pmid: "30190746",
+    citations: 17,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Zhang R", "Chang M", "Tang S"],
+    tags: ["Lumbar stenosis", "Exercise therapy", "Meta-analysis"],
+    summaryEn: "Systematic review and meta-analysis comparing exercise therapy versus surgery for lumbar spinal stenosis.",
+    summaryZh: "系统综述与Meta分析比较运动疗法与手术治疗腰椎管狭窄症。"
+  },
+  {
+    id: "plif2018",
+    title: "Comparative effectiveness and safety of posterior lumbar interbody fusion, Coflex, Wallis, and X-stop for lumbar degenerative diseases: A systematic review and network meta-analysis",
+    journal: "Clinical Neurology and Neurosurgery",
+    year: 2018,
+    volume: "172: 74–81",
+    doi: "10.1016/j.clineuro.2018.06.030",
+    pmid: "29986199",
+    citations: 34,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Li D", "Zhang R", "Chang M", "Yang B", "Tang S"],
+    tags: ["Lumbar fusion", "Network meta-analysis"],
+    summaryEn: "Network meta-analysis comparing the effectiveness and safety of posterior lumbar interbody fusion, Coflex, Wallis, and X-stop for lumbar degenerative diseases.",
+    summaryZh: "网状Meta分析比较后路腰椎椎间融合、Coflex、Wallis与X-stop治疗腰椎退行性疾病的疗效与安全性。"
+  },
+  {
+    id: "obliquepull2018",
+    title: "Comparison Between Oblique Pulling Spinal Manipulation and Other Treatments for Lumbar Disc Herniation: A Systematic Review and Meta-Analysis",
+    journal: "Journal of Manipulative and Physiological Therapeutics",
+    year: 2018,
+    volume: "41(9): 771–779",
+    doi: "10.1016/j.jmpt.2018.04.005",
+    pmid: "30871713",
+    citations: 21,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Zhang R", "Chen J", "Shu X", "Tang S"],
+    tags: ["Spinal manipulation", "Lumbar disc herniation", "Meta-analysis"],
+    summaryEn: "Systematic review and meta-analysis comparing oblique pulling spinal manipulation with other treatments for lumbar disc herniation.",
+    summaryZh: "系统综述与Meta分析比较斜扳推拿手法与其他方法治疗腰椎间盘突出症。"
+  }
+];
+
+const PUBS_COAUTHOR = [
   {
     id: "nejm2024",
     title: "Sequential CD7 CAR T-Cell Therapy and Allogeneic HSCT without GVHD Prophylaxis",
@@ -132,6 +409,9 @@ const I18N = {
     "pubs.kicker": "Publications",
     "pubs.title": "Selected Publications",
     "pubs.note": "Contributing author shown in bold.",
+    "pubs.firstTitle": "First / Corresponding Author",
+    "pubs.coauthTitle": "Co-author",
+    "pubs.empty": "Publication list in preparation — check back soon.",
     "pubs.footnote": "For the most up-to-date list, see my Google Scholar profile.",
     "news.kicker": "News",
     "news.title": "News & Updates",
@@ -205,6 +485,9 @@ const I18N = {
     "pubs.kicker": "论文",
     "pubs.title": "代表性论文",
     "pubs.note": "加粗为本人。",
+    "pubs.firstTitle": "第一作者 / 通讯作者",
+    "pubs.coauthTitle": "合作作者",
+    "pubs.empty": "论文清单整理中，敬请期待。",
     "pubs.footnote": "最新完整列表请见我的 Google Scholar 主页。",
     "news.kicker": "动态",
     "news.title": "最新动态",
@@ -272,37 +555,54 @@ function pubLinks(p) {
   return links.join("");
 }
 
+function pubCard(p, lang) {
+  const featured = p.featured;
+  const badge = featured
+    ? '<span class="pub-badge badge-featured">★ Featured / 亮点</span>'
+    : '<span class="pub-badge badge-default">Publication / 论文</span>';
+  const roleBadge = p.role
+    ? '<span class="pub-badge badge-role">' + (lang === "zh" ? p.roleZh : p.roleEn) + "</span>"
+    : "";
+  const summary = lang === "zh" ? p.summaryZh : p.summaryEn;
+  const titleLink = p.doi
+    ? '<a href="https://doi.org/' + p.doi + '" target="_blank" rel="noopener">' + p.title + "</a>"
+    : p.title;
+  const citePill = p.citations > 0
+    ? '<span class="cite-pill">Cited ' + p.citations + "×</span>"
+    : "";
+  return (
+    '<article class="pub-card' + (featured ? " featured" : "") + '">' +
+      roleBadge +
+      badge +
+      '<h3 class="pub-title">' + titleLink + "</h3>" +
+      '<p class="pub-authors">' + renderAuthors(p.authors) + "</p>" +
+      '<p class="pub-venue"><span class="journal">' + p.journal + "</span>" +
+        (p.volume ? " · " + p.volume : "") +
+        ' · <span class="year">' + p.year + "</span></p>" +
+      (summary ? '<p class="pub-summary">' + summary + "</p>" : "") +
+      '<div class="pub-meta">' +
+        (p.tags || []).map((t) => '<span class="meta-tag">' + t + "</span>").join("") +
+        citePill +
+        pubLinks(p) +
+      "</div>" +
+    "</article>"
+  );
+}
+
+function renderPubCategory(titleKey, pubs, lang) {
+  let html = '<h3 class="pub-cat-title">' + I18N[lang][titleKey] + "</h3>";
+  if (!pubs.length) {
+    html += '<p class="pub-empty">' + I18N[lang]["pubs.empty"] + "</p>";
+  } else {
+    html += '<div class="pub-list">' + pubs.map((p) => pubCard(p, lang)).join("") + "</div>";
+  }
+  return html;
+}
+
 function renderPublications(lang) {
-  const list = $("#pubList");
-  list.innerHTML = PUBLICATIONS.map((p) => {
-    const featured = p.featured;
-    const badge = featured
-      ? '<span class="pub-badge badge-featured">★ Featured / 亮点</span>'
-      : '<span class="pub-badge badge-default">Publication / 论文</span>';
-    const summary = lang === "zh" ? p.summaryZh : p.summaryEn;
-    const titleLink = p.doi
-      ? '<a href="https://doi.org/' + p.doi + '" target="_blank" rel="noopener">' + p.title + "</a>"
-      : p.title;
-    const citePill = p.citations > 0
-      ? '<span class="cite-pill">Cited ' + p.citations + "×</span>"
-      : "";
-    return (
-      '<article class="pub-card' + (featured ? " featured" : "") + '">' +
-        badge +
-        '<h3 class="pub-title">' + titleLink + "</h3>" +
-        '<p class="pub-authors">' + renderAuthors(p.authors) + "</p>" +
-        '<p class="pub-venue"><span class="journal">' + p.journal + "</span>" +
-          (p.volume ? " · " + p.volume : "") +
-          ' · <span class="year">' + p.year + "</span></p>" +
-        (summary ? '<p class="pub-summary">' + summary + "</p>" : "") +
-        '<div class="pub-meta">' +
-          (p.tags || []).map((t) => '<span class="meta-tag">' + t + "</span>").join("") +
-          citePill +
-          pubLinks(p) +
-        "</div>" +
-      "</article>"
-    );
-  }).join("");
+  $("#pubList").innerHTML =
+    renderPubCategory("pubs.firstTitle", PUBS_FIRST_AUTHOR, lang) +
+    renderPubCategory("pubs.coauthTitle", PUBS_COAUTHOR, lang);
 }
 
 /* ------------------------------------------------------------

@@ -43,8 +43,8 @@ To deploy on **GitHub Pages**: push this folder to a repo, then enable Pages (br
 ## ✏️ How to customize
 
 ### 1. Your photo
-Replace `assets/avatar.svg` with your own photo (square, e.g. `assets/avatar.jpg`) and update
-the `<img src="assets/avatar.svg" ...>` tag in `index.html`.
+Replace `assets/photo.jpg` with your own square photo (already wired into the avatar).
+The original `assets/avatar.svg` acts as an automatic fallback if the photo is missing.
 
 ### 2. Your accounts & contact
 Open `js/main.js` and edit the `PROFILE` object:
@@ -63,7 +63,11 @@ const PROFILE = {
 Update citation metrics in the `METRICS` object as your Google Scholar grows.
 
 ### 3. Add a new publication
-Append an object to the `PUBLICATIONS` array in `js/main.js` (newest first):
+The publication list is split into two groups in `js/main.js`:
+- `PUBS_FIRST_AUTHOR` — first-author / corresponding-author papers
+- `PUBS_COAUTHOR` — co-authored papers
+
+Add an object to the relevant array (newest first):
 
 ```js
 {
@@ -77,6 +81,9 @@ Append an object to the `PUBLICATIONS` array in `js/main.js` (newest first):
   pmc: "PMC1234567",            // optional
   citations: 12,
   featured: false,              // true → highlighted card
+  role: true,                   // optional: show a role badge
+  roleEn: "First author",       // badge text (EN)
+  roleZh: "第一作者",            // badge text (ZH)
   authors: ["First A", "Mo Z", "Last A"],   // "Mo Z" is auto-bolded
   tags: ["Tag1", "Tag2"],
   summaryEn: "English one-line summary.",

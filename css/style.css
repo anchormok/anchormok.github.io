@@ -391,6 +391,40 @@ img { max-width: 100%; display: block; }
 /* ============ PUBLICATIONS ============ */
 .pub-list { display: flex; flex-direction: column; gap: 22px; }
 
+.pub-cat-title {
+  font-size: 21px;
+  font-weight: 700;
+  margin: 8px 0 18px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pub-cat-title::before {
+  content: "";
+  width: 8px; height: 22px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+}
+.pub-cat-title:not(:first-child) { margin-top: 44px; }
+
+.pub-empty {
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 34px 28px;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 15px;
+}
+
+.badge-role {
+  background: var(--accent);
+  color: #fff;
+  margin-right: 8px;
+}
+
 .pub-card {
   background: var(--surface);
   border: 1px solid var(--line);
