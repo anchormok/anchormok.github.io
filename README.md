@@ -98,4 +98,5 @@ strings via `data-i18n="key"`. Section structure lives in `index.html`.
 ## ✅ Publication metadata source
 
 Publications were verified via the NCBI PubMed E-utilities API and the Semantic Scholar
-Graph API (Aug 2026). Citation counts reflect Semantic Scholar at retrieval time.
+Graph API (Aug 2026). Citation counts reflect the author's **Google Scholar** profile
+(`https://scholar.google.com/citations?user=8a32kCgAAAAJ&hl=en`) at retrieval time.
