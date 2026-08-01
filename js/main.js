@@ -55,6 +55,7 @@ const PUBS_FIRST_AUTHOR = [
     id: "jtm2022",
     module: "phd",
     zone1: true,
+    featuredOrder: 1,
     title: "Single-cell transcriptomics reveals the role of Macrophage-Naïve CD4+ T cell interaction in the immunosuppressive microenvironment of primary liver carcinoma",
     journal: "Journal of Translational Medicine",
     year: 2022,
@@ -324,6 +325,7 @@ const PUBS_COAUTHOR = [
   {
     id: "nejm2024",
     zone1: true,
+    featuredOrder: 3,
     title: "Sequential CD7 CAR T-Cell Therapy and Allogeneic HSCT without GVHD Prophylaxis",
     journal: "New England Journal of Medicine",
     year: 2024,
@@ -340,6 +342,7 @@ const PUBS_COAUTHOR = [
   {
     id: "crm2025",
     zone1: true,
+    featuredOrder: 2,
     title: "CD70-targeted iPSC-derived CAR-NK cells display potent function against tumors and alloreactive T cells",
     journal: "Cell Reports Medicine",
     year: 2025,
@@ -371,7 +374,6 @@ const PUBS_COAUTHOR = [
   },
   {
     id: "srgn2025",
-    zone1: true,
     title: "SRGN-mediated reactivation of the YAP/CRISPLD2 axis promotes aggressiveness of hepatocellular carcinoma",
     journal: "International Journal of Biological Sciences",
     year: 2025,
@@ -387,7 +389,6 @@ const PUBS_COAUTHOR = [
   },
   {
     id: "autophagy2022",
-    zone1: true,
     title: "Adaptor SH3BGRL drives autophagy-mediated chemoresistance through promoting PIK3C3 translation and ATG12 stability in breast cancers",
     journal: "Autophagy",
     year: 2022,
@@ -418,7 +419,6 @@ const PUBS_COAUTHOR = [
   },
   {
     id: "apsb2021",
-    zone1: true,
     title: "Synergetic delivery of triptolide and Ce6 with light-activatable liposomes for efficient hepatocellular carcinoma therapy",
     journal: "Acta Pharmaceutica Sinica B",
     year: 2021,
@@ -803,16 +803,23 @@ function renderModulePubs(pubs, lang) {
   return html;
 }
 
+const FEATURED_ROLE = {
+  jtm2022: { en: "First author", zh: "第一作者" },
+  crm2025: { en: "Co-first author", zh: "共同第一作者" },
+  nejm2024: { en: "Co-author", zh: "合作作者" }
+};
+
 function renderFeatured(lang) {
-  const firstIds = new Set(PUBS_FIRST_AUTHOR.map((p) => p.id));
   const featured = PUBS_FIRST_AUTHOR.concat(PUBS_COAUTHOR)
     .filter((p) => p.zone1)
-    .sort((a, b) => (b.year || 0) - (a.year || 0))
+    .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
     .map((p) => {
       const c = Object.assign({}, p);
-      c.role = true;
-      c.roleEn = firstIds.has(p.id) ? "First author" : "Co-author";
-      c.roleZh = firstIds.has(p.id) ? "第一作者" : "合作作者";
+      if (FEATURED_ROLE[p.id]) {
+        c.role = true;
+        c.roleEn = FEATURED_ROLE[p.id].en;
+        c.roleZh = FEATURED_ROLE[p.id].zh;
+      }
       return c;
     });
   return (
