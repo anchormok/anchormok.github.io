@@ -54,6 +54,7 @@ const PUBS_FIRST_AUTHOR = [
   {
     id: "jtm2022",
     module: "phd",
+    zone1: true,
     title: "Single-cell transcriptomics reveals the role of Macrophage-Naïve CD4+ T cell interaction in the immunosuppressive microenvironment of primary liver carcinoma",
     journal: "Journal of Translational Medicine",
     year: 2022,
@@ -322,6 +323,7 @@ const PUBS_FIRST_AUTHOR = [
 const PUBS_COAUTHOR = [
   {
     id: "nejm2024",
+    zone1: true,
     title: "Sequential CD7 CAR T-Cell Therapy and Allogeneic HSCT without GVHD Prophylaxis",
     journal: "New England Journal of Medicine",
     year: 2024,
@@ -337,6 +339,7 @@ const PUBS_COAUTHOR = [
   },
   {
     id: "crm2025",
+    zone1: true,
     title: "CD70-targeted iPSC-derived CAR-NK cells display potent function against tumors and alloreactive T cells",
     journal: "Cell Reports Medicine",
     year: 2025,
@@ -368,6 +371,7 @@ const PUBS_COAUTHOR = [
   },
   {
     id: "srgn2025",
+    zone1: true,
     title: "SRGN-mediated reactivation of the YAP/CRISPLD2 axis promotes aggressiveness of hepatocellular carcinoma",
     journal: "International Journal of Biological Sciences",
     year: 2025,
@@ -383,6 +387,7 @@ const PUBS_COAUTHOR = [
   },
   {
     id: "autophagy2022",
+    zone1: true,
     title: "Adaptor SH3BGRL drives autophagy-mediated chemoresistance through promoting PIK3C3 translation and ATG12 stability in breast cancers",
     journal: "Autophagy",
     year: 2022,
@@ -413,6 +418,7 @@ const PUBS_COAUTHOR = [
   },
   {
     id: "apsb2021",
+    zone1: true,
     title: "Synergetic delivery of triptolide and Ce6 with light-activatable liposomes for efficient hepatocellular carcinoma therapy",
     journal: "Acta Pharmaceutica Sinica B",
     year: 2021,
@@ -559,8 +565,11 @@ const I18N = {
     "pubs.kicker": "Publications",
     "pubs.title": "Selected Publications",
     "pubs.note": "Contributing author shown in bold.",
+    "pubs.featuredTitle": "Featured · CAS Zone 1",
+    "pubs.featuredDesc": "Top-tier publications in Chinese Academy of Sciences (CAS) Zone 1 journals, including emerging (新锐) Zone 1.",
     "pubs.firstTitle": "First / Corresponding Author",
     "pubs.coauthTitle": "Co-author",
+    "pubs.coauthAll": "All Co-authored Publications",
     "pubs.empty": "Publication list in preparation — check back soon.",
     "pubs.modulePostdoc": "Postdoctoral Phase · Cellular Immunotherapy",
     "pubs.modulePostdocPeriod": "Sep 2022 – present",
@@ -645,8 +654,11 @@ const I18N = {
     "pubs.kicker": "论文",
     "pubs.title": "代表性论文",
     "pubs.note": "加粗为本人。",
+    "pubs.featuredTitle": "亮点精选 · 中科院一区",
+    "pubs.featuredDesc": "收录于中科院一区（含新锐一区）期刊的顶级论文。",
     "pubs.firstTitle": "第一作者 / 通讯作者",
     "pubs.coauthTitle": "合作作者",
+    "pubs.coauthAll": "全部合作作者论文",
     "pubs.empty": "论文清单整理中，敬请期待。",
     "pubs.modulePostdoc": "博士后阶段 · 细胞免疫治疗",
     "pubs.modulePostdocPeriod": "2022年9月至今",
@@ -791,12 +803,40 @@ function renderModulePubs(pubs, lang) {
   return html;
 }
 
+function renderFeatured(lang) {
+  const firstIds = new Set(PUBS_FIRST_AUTHOR.map((p) => p.id));
+  const featured = PUBS_FIRST_AUTHOR.concat(PUBS_COAUTHOR)
+    .filter((p) => p.zone1)
+    .sort((a, b) => (b.year || 0) - (a.year || 0))
+    .map((p) => {
+      const c = Object.assign({}, p);
+      c.role = true;
+      c.roleEn = firstIds.has(p.id) ? "First author" : "Co-author";
+      c.roleZh = firstIds.has(p.id) ? "第一作者" : "合作作者";
+      return c;
+    });
+  return (
+    '<h3 class="pub-cat-title featured-title">' + I18N[lang]["pubs.featuredTitle"] + "</h3>" +
+    '<p class="pub-module-desc">' + I18N[lang]["pubs.featuredDesc"] + "</p>" +
+    '<div class="pub-list">' + featured.map((p) => pubCard(p, lang)).join("") + "</div>"
+  );
+}
+
 function renderPublications(lang) {
-  let html = '<h3 class="pub-cat-title">' + I18N[lang]["pubs.firstTitle"] + "</h3>";
+  let html = renderFeatured(lang);
+  html += '<h3 class="pub-cat-title">' + I18N[lang]["pubs.firstTitle"] + "</h3>";
   html += renderModulePubs(PUBS_FIRST_AUTHOR, lang);
-  html += '<h3 class="pub-cat-title">' + I18N[lang]["pubs.coauthTitle"] + "</h3>";
-  // Only the top 3 co-authored papers are shown
-  html += '<div class="pub-list">' + PUBS_COAUTHOR.slice(0, 3).map((p) => pubCard(p, lang)).join("") + "</div>";
+  // Co-authored papers: all of them, inside a collapsible accordion
+  html += '<details class="pub-module coauthor-module">';
+  html += '<summary class="pub-module-head">';
+  html += '<span class="pub-module-caret" aria-hidden="true"></span>';
+  html += "<h4>" + I18N[lang]["pubs.coauthAll"] + "</h4>";
+  html += '<span class="pub-module-count">' + PUBS_COAUTHOR.length + "</span>";
+  html += "</summary>";
+  html += '<div class="pub-module-body">';
+  html += '<div class="pub-list">' + PUBS_COAUTHOR.map((p) => pubCard(p, lang)).join("") + "</div>";
+  html += "</div>";
+  html += "</details>";
   $("#pubList").innerHTML = html;
 }
 
