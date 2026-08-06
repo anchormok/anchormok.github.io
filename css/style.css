@@ -521,13 +521,6 @@ img { max-width: 100%; display: block; }
 }
 .badge-featured { background: var(--primary); color: #fff; }
 .badge-default { background: var(--surface-2); color: var(--ink-soft); }
-.badge-auto {
-  background: #eaf2ff;
-  color: var(--primary);
-  border: 1px dashed var(--primary);
-  margin-right: 8px;
-}
-.auto-module { border-left: 3px solid var(--primary); }
 
 .pub-title { font-size: 19px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
 .pub-title a { color: var(--ink); }
