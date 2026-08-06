@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-08-06T02:50:40Z",
+  "source": "pubmed",
+  "metrics": null,
+  "new_papers": [
+    {
+      "pmid": "37587817",
+      "title": "Prognostic Role of Unfolded Protein Response-Related Genes in Hepatocellular Carcinoma",
+      "journal": "Current protein & peptide science",
+      "year": 2023,
+      "volume": "24(8): 666-683",
+      "authors": [
+        "Zhang S",
+        "Li X",
+        "Zheng Y",
+        "Hu H",
+        "Liu J",
+        "Zhang S",
+        "Tang C",
+        "Mo Z",
+        "Kuang W"
+      ],
+      "classification": "coauthor"
+    },
+    {
+      "pmid": "33688369",
+      "title": "A Network Pharmacology Approach to Reveal the Underlying Mechanisms of Artemisia annua on the Treatment of Hepatocellular Carcinoma",
+      "journal": "Evidence-based complementary and alternative medicine : eCAM",
+      "year": 2021,
+      "volume": "2021: 8947304",
+      "authors": [
+        "Zhang S",
+        "Mo Z",
+        "Zhang S",
+        "Li X"
+      ],
+      "classification": "coauthor"
+    },
+    {
+      "pmid": "31612038",
+      "title": "Investigation of miRNA- and lncRNA-mediated competing endogenous RNA network in cholangiocarcinoma",
+      "journal": "Oncology letters",
+      "year": 2019,
+      "volume": "18(5): 5283-5293",
+      "authors": [
+        "He Y",
+        "Liu C",
+        "Song P",
+        "Pang Z",
+        "Mo Z",
+        "Huang C",
+        "Yan T",
+        "Sun M",
+        "Fa X"
+      ],
+      "classification": "coauthor"
+    }
+  ]
+}

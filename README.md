@@ -95,6 +95,29 @@ Add an object to the relevant array (newest first):
 UI text lives in the `I18N` object (`en` / `zh`) in `js/main.js`; HTML elements reference
 strings via `data-i18n="key"`. Section structure lives in `index.html`.
 
+## 🤖 Automatic daily update (GitHub Actions)
+
+The site ships with a scheduled workflow (`.github/workflows/update-pubs.yml`) that runs
+**every day at 01:00 UTC** (09:00 Beijing) and writes `data/live.json`:
+
+- **New papers** — fetches the author's PubMed record (NCBI E-utilities, official API,
+  no key needed) and flags any paper not yet curated as an *Auto-Detected New Paper* on
+  the site, with a guessed role (first/corresponding vs co-author) marked **pending review**.
+  After you curate a paper into `PUBS_FIRST_AUTHOR` / `PUBS_COAUTHOR`, it stops appearing there.
+- **Metrics** — best-effort refresh of papers / citations / h-index from **Google Scholar**
+  (`scholarly`). If Google blocks the fetch, existing metrics are kept (never wrong values).
+
+The site falls back to the hardcoded `METRICS` / `PUBS_*` data whenever `data/live.json` is
+missing or unreachable, so the page always works offline.
+
+Run it manually any time from the **Actions** tab ("Auto-update publications" → Run workflow),
+or locally:
+
+```bash
+pip install --quiet requests scholarly
+python scripts/update_pubs.py
+```
+
 ## ✅ Publication metadata source
 
 Publications were verified via the NCBI PubMed E-utilities API and the Semantic Scholar

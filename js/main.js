@@ -582,6 +582,12 @@ const I18N = {
     "pubs.moduleMastersDesc": "Evidence-based medicine — systematic reviews & network meta-analyses",
     "pubs.moduleEmpty": "First/corresponding-author publications in preparation.",
     "pubs.footnote": "For the most up-to-date list, see my Google Scholar profile.",
+    "pubs.autoTitle": "Auto-Detected New Papers",
+    "pubs.autoDesc": "Recently indexed on PubMed and not yet curated. Review each paper and move it into the lists above.",
+    "pubs.autoBadge": "Auto-detected · Pending",
+    "pubs.roleFirstPending": "First / corresponding author (pending)",
+    "pubs.roleCoauthorPending": "Co-author (pending)",
+    "pubs.metricsNote": "Statistics auto-updated daily from PubMed & Google Scholar.",
     "news.kicker": "News",
     "news.title": "News & Updates",
     "news.n1Title": "CD19 CAR-T long-term follow-up published",
@@ -671,6 +677,12 @@ const I18N = {
     "pubs.moduleMastersDesc": "循证医学——系统评价与网状Meta分析",
     "pubs.moduleEmpty": "第一/通讯作者论文整理中，敬请期待。",
     "pubs.footnote": "最新完整列表请见我的 Google Scholar 主页。",
+    "pubs.autoTitle": "自动检测到的新论文",
+    "pubs.autoDesc": "为 PubMed 最新收录、尚未整理到上方列表的论文。请核对后补充摘要与角色信息。",
+    "pubs.autoBadge": "自动检测 · 待整理",
+    "pubs.roleFirstPending": "第一作者 / 通讯作者（待确认）",
+    "pubs.roleCoauthorPending": "合作作者（待确认）",
+    "pubs.metricsNote": "统计数字每日自动更新（PubMed 与 Google Scholar）。",
     "news.kicker": "动态",
     "news.title": "最新动态",
     "news.n1Title": "CD19 CAR-T 长期随访研究发表",
@@ -698,6 +710,19 @@ const I18N = {
    ------------------------------------------------------------ */
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
+
+/* Runtime data from data/live.json (auto-updated daily by GitHub Actions).
+   Falls back to hardcoded METRICS / PUBS when the file is absent. */
+let LIVE = null;
+async function loadLiveData() {
+  try {
+    const res = await fetch("data/live.json", { cache: "no-store" });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (e) {
+    return null;
+  }
+}
 
 function applyLanguage(lang) {
   const dict = I18N[lang];
@@ -830,7 +855,51 @@ function renderFeatured(lang) {
   );
 }
 
-function renderPublications(lang) {
+function renderAutoPapers(live, lang) {
+  if (!live || !Array.isArray(live.new_papers) || live.new_papers.length === 0) return "";
+  const cards = live.new_papers.map((p) => {
+    const role = p.classification === "first_author"
+      ? I18N[lang]["pubs.roleFirstPending"]
+      : I18N[lang]["pubs.roleCoauthorPending"];
+    const title = p.pmid
+      ? '<a href="https://pubmed.ncbi.nlm.nih.gov/' + p.pmid + '/" target="_blank" rel="noopener">' + p.title + "</a>"
+      : p.title;
+    const authors = Array.isArray(p.authors) && p.authors.length
+      ? '<p class="pub-authors">' + p.authors.join(", ") + "</p>"
+      : "";
+    return (
+      '<article class="pub-card auto-paper">' +
+        '<span class="pub-badge badge-auto">' + I18N[lang]["pubs.autoBadge"] + "</span>" +
+        '<span class="pub-badge badge-role">' + role + "</span>" +
+        '<h3 class="pub-title">' + title + "</h3>" +
+        authors +
+        '<p class="pub-venue"><span class="journal">' + p.journal + "</span>" +
+          (p.volume ? " · " + p.volume : "") +
+          ' · <span class="year">' + p.year + "</span></p>" +
+        '<div class="pub-meta">' +
+          (p.pmid
+            ? '<a class="meta-link" href="https://pubmed.ncbi.nlm.nih.gov/' + p.pmid + '/" target="_blank" rel="noopener">PubMed</a>'
+            : "") +
+        "</div>" +
+      "</article>"
+    );
+  });
+  return (
+    '<details class="pub-module auto-module" id="auto-new-papers">' +
+    '<summary class="pub-module-head">' +
+    '<span class="pub-module-caret" aria-hidden="true"></span>' +
+    "<h4>" + I18N[lang]["pubs.autoTitle"] + "</h4>" +
+    '<span class="pub-module-count">' + live.new_papers.length + "</span>" +
+    "</summary>" +
+    '<div class="pub-module-body">' +
+    '<p class="pub-module-desc">' + I18N[lang]["pubs.autoDesc"] + "</p>" +
+    '<div class="pub-list">' + cards.join("") + "</div>" +
+    "</div>" +
+    "</details>"
+  );
+}
+
+function renderPublications(lang, live) {
   let html = renderFeatured(lang);
   html += '<h3 class="pub-cat-title">' + I18N[lang]["pubs.firstTitle"] + "</h3>";
   html += renderModulePubs(PUBS_FIRST_AUTHOR, lang);
@@ -845,13 +914,19 @@ function renderPublications(lang) {
   html += '<div class="pub-list">' + PUBS_COAUTHOR.map((p) => pubCard(p, lang)).join("") + "</div>";
   html += "</div>";
   html += "</details>";
+  // Auto-detected new papers (from data/live.json)
+  html += renderAutoPapers(live, lang);
+  // Footnote: mention auto-update when live metrics are present
+  if (live && live.metrics) {
+    html += '<p class="pub-footnote">' + I18N[lang]["pubs.metricsNote"] + "</p>";
+  }
   $("#pubList").innerHTML = html;
 }
 
 /* ------------------------------------------------------------
    Wire up links + metrics
    ------------------------------------------------------------ */
-function setupProfile() {
+function setupProfile(live) {
   const links = {
     linkScholar: PROFILE.googleScholar,
     linkScholarCard: PROFILE.googleScholar,
@@ -874,6 +949,13 @@ function setupProfile() {
   $("#statPapers").textContent = METRICS.papers;
   $("#statCites").textContent = METRICS.citations;
   $("#statH").textContent = METRICS.hIndex;
+
+  // Override with auto-updated metrics (data/live.json) when available
+  if (live && live.metrics) {
+    if (live.metrics.papers != null) $("#statPapers").textContent = live.metrics.papers;
+    if (live.metrics.citations != null) $("#statCites").textContent = live.metrics.citations;
+    if (live.metrics.hIndex != null) $("#statH").textContent = live.metrics.hIndex;
+  }
 }
 
 /* ------------------------------------------------------------
@@ -919,17 +1001,18 @@ function setupScrollEffects() {
 /* ------------------------------------------------------------
    Init
    ------------------------------------------------------------ */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const saved = localStorage.getItem("zm-lang") || "en";
+  LIVE = await loadLiveData();
   applyLanguage(saved);
-  setupProfile();
-  renderPublications(saved);
+  setupProfile(LIVE);
+  renderPublications(saved, LIVE);
   setupScrollEffects();
 
   $("#langToggle").addEventListener("click", () => {
     const current = document.documentElement.getAttribute("data-i18n-lang") === "zh" ? "zh" : "en";
     const next = current === "en" ? "zh" : "en";
     applyLanguage(next);
-    renderPublications(next);
+    renderPublications(next, LIVE);
   });
 });
