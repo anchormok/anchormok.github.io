@@ -238,7 +238,7 @@ img { max-width: 100%; display: block; }
 .chip-solid:hover { background: var(--primary); color: #fff; }
 
 /* hero figure */
-.hero-figure { position: relative; display: flex; justify-content: center; }
+.hero-figure { position: relative; display: flex; justify-content: center; margin-top: 28px; }
 
 .avatar-ring {
   position: relative;
