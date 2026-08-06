@@ -733,6 +733,15 @@ const I18N = {
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
+/* Safe storage access — never let a blocked/disabled localStorage
+   (e.g. private browsing) break language switching or page rendering. */
+function storageGet(key) {
+  try { return localStorage.getItem(key); } catch (e) { return null; }
+}
+function storageSet(key, val) {
+  try { localStorage.setItem(key, val); } catch (e) { /* ignore */ }
+}
+
 function applyLanguage(lang) {
   const dict = I18N[lang];
   document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
@@ -749,7 +758,7 @@ function applyLanguage(lang) {
     ? '<span class="lang-en lang-active">EN</span><span class="lang-divider">/</span><span class="lang-zh">中文</span>'
     : '<span class="lang-en">EN</span><span class="lang-divider">/</span><span class="lang-zh lang-active">中文</span>';
 
-  localStorage.setItem("zm-lang", lang);
+  storageSet("zm-lang", lang);
 }
 
 /* ------------------------------------------------------------
@@ -954,7 +963,7 @@ function setupScrollEffects() {
    Init
    ------------------------------------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
-  const saved = localStorage.getItem("zm-lang") || "en";
+  const saved = storageGet("zm-lang") || "en";
   applyLanguage(saved);
   setupProfile();
   renderPublications(saved);
