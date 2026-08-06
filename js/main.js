@@ -791,6 +791,7 @@ function renderModulePubs(pubs, lang) {
     html += '<span class="pub-module-caret" aria-hidden="true"></span>';
     html += "<h4>" + I18N[lang][m.titleKey] + "</h4>";
     html += '<span class="pub-module-period">' + I18N[lang][m.periodKey] + "</span>";
+    html += '<span class="pub-module-count">' + items.length + "</span>";
     html += "</summary>";
     html += '<div class="pub-module-body">';
     html += "<p class=\"pub-module-desc\">" + I18N[lang][m.descKey] + "</p>";
