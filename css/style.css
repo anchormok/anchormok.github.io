@@ -568,6 +568,27 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
 }
 
+/* Journal Impact Factor pill (2025 JCR) */
+.if-pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-left: 8px;
+  vertical-align: middle;
+  line-height: 1.4;
+}
+.if-pill.if-none {
+  color: var(--ink-faint);
+  background: var(--surface-2);
+  font-weight: 600;
+}
+.pub-venue .if-pill { margin-left: 10px; }
+
 .pub-footnote { margin-top: 26px; font-size: 14px; color: var(--ink-faint); text-align: center; }
 
 /* ============ NEWS / TIMELINE ============ */

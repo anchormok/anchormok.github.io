@@ -25,6 +25,38 @@ const METRICS = {
 };
 
 /* ------------------------------------------------------------
+   2b) JOURNAL IMPACT FACTORS — 2025 JCR (released Jun 2026), via LetPub.
+       null = journal has no current JIF (delisted / ESCI without JIF).
+   ------------------------------------------------------------ */
+const JOURNAL_IF = {
+  "New England Journal of Medicine": "84.5",
+  "Autophagy": "18.6",
+  "Acta Pharmaceutica Sinica B": "14.6",
+  "Cell Reports Medicine": "14.0",
+  "International Journal of Biological Sciences": "11.7",
+  "Journal of Translational Medicine": "9.7",
+  "Frontiers in Immunology": "7.0",
+  "Frontiers in Pharmacology": "5.4",
+  "Frontiers in Molecular Biosciences": "4.4",
+  "Transplantation and Cellular Therapy": "4.7",
+  "Journal of Traditional and Complementary Medicine": "3.9",
+  "International Journal of Medical Sciences": "3.7",
+  "Frontiers in Oncology": "3.4",
+  "Journal of Cancer": "3.4",
+  "Frontiers in Genetics": "3.0",
+  "BioMed Research International": "2.9",
+  "Neurosurgical Review": "2.8",
+  "Acupuncture in Medicine": "2.7",
+  "Clinical Neurology and Neurosurgery": "1.9",
+  "Pakistan Journal of Medical Sciences": "1.6",
+  "Journal of Manipulative and Physiological Therapeutics": "1.4",
+  // No current JIF (Hindawi journals delisted from JCR / ESCI without JIF):
+  "Journal of Oncology": null,
+  "Evidence-Based Complementary and Alternative Medicine": null,
+  "Arthroscopy, Sports Medicine, and Rehabilitation": null,
+};
+
+/* ------------------------------------------------------------
    3) PUBLICATIONS — two groups:
       PUBS_FIRST_AUTHOR : first-author / corresponding-author papers
       PUBS_COAUTHOR     : co-authored papers
@@ -795,6 +827,13 @@ function pubCard(p, lang) {
   const citePill = p.citations > 0
     ? '<span class="cite-pill">Cited ' + p.citations + "×</span>"
     : "";
+  // Journal Impact Factor badge (2025 JCR)
+  const ifValue = JOURNAL_IF[p.journal];
+  const ifBadge = ifValue
+    ? '<span class="if-pill" title="Journal Impact Factor (2025 JCR)">IF ' + ifValue + "</span>"
+    : (ifValue === null
+        ? '<span class="if-pill if-none" title="No current Journal Impact Factor (delisted / ESCI)">IF —</span>'
+        : "");
   return (
     '<article class="pub-card' + (featured ? " featured" : "") + '">' +
       roleBadge +
@@ -803,7 +842,8 @@ function pubCard(p, lang) {
       '<p class="pub-authors">' + renderAuthors(p.authors) + "</p>" +
       '<p class="pub-venue"><span class="journal">' + p.journal + "</span>" +
         (p.volume ? " · " + p.volume : "") +
-        ' · <span class="year">' + p.year + "</span></p>" +
+        ' · <span class="year">' + p.year + "</span>" +
+        ifBadge + "</p>" +
       (summary ? '<p class="pub-summary">' + summary + "</p>" : "") +
       '<div class="pub-meta">' +
         (p.tags || []).map((t) => '<span class="meta-tag">' + t + "</span>").join("") +
