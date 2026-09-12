@@ -489,6 +489,14 @@ img { max-width: 100%; display: block; }
   margin-right: 8px;
 }
 
+/* Status badge — accepted / in revision papers without a volume yet */
+.badge-status {
+  background: var(--accent-soft);
+  color: #0b7c7d;
+  border: 1px solid #bfe9e9;
+  margin-right: 8px;
+}
+
 .pub-card {
   background: var(--surface);
   border: 1px solid var(--line);

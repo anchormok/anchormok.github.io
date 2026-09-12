@@ -19,7 +19,7 @@ const PROFILE = {
    2) METRICS — update as Google Scholar grows
    ------------------------------------------------------------ */
 const METRICS = {
-  papers: "27",      // 15 first/corresponding + 12 co-author
+  papers: "29",      // 17 first/corresponding + 12 co-author
   citations: "1045", // Google Scholar (verified profile, Aug 2026)
   hIndex: "17",
 };
@@ -30,11 +30,13 @@ const METRICS = {
    ------------------------------------------------------------ */
 const JOURNAL_IF = {
   "New England Journal of Medicine": "84.5",
+  "Cancer Discovery": "29.5",
   "Autophagy": "18.6",
   "Acta Pharmaceutica Sinica B": "14.6",
   "Cell Reports Medicine": "14.0",
   "International Journal of Biological Sciences": "11.7",
   "Journal of Translational Medicine": "9.7",
+  "npj Precision Oncology": "9.9",
   "Frontiers in Immunology": "7.0",
   "Frontiers in Pharmacology": "5.4",
   "Frontiers in Molecular Biosciences": "4.4",
@@ -63,6 +65,50 @@ const JOURNAL_IF = {
    ------------------------------------------------------------ */
 const PUBS_FIRST_AUTHOR = [
   // Fields: role: true, roleEn, roleZh (shows a badge), authors (["Mo Z"] is bolded).
+  // Optional: statusEn / statusZh (shows a status badge, e.g. Accepted / In revision)
+  //           for papers that are accepted or under revision (no volume / DOI yet).
+  {
+    id: "cancerdisc2026",
+    module: "postdoc",
+    zone1: true,
+    featuredOrder: 0,
+    title: "Targeting BLVRB Overcomes Immunosuppression and Potentiates Immunotherapy in Monocytic Acute Myeloid Leukemia",
+    journal: "Cancer Discovery",
+    year: 2026,
+    volume: "",
+    statusEn: "Accepted",
+    statusZh: "已接收",
+    citations: 0,
+    featured: true,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Wang J", "Zhao Y", "Liang X", "Liu L", "Liu J", "Wang K", "Qin L", "Su M", "Guo H", "Chen Y", "Sun X", "Yan R", "Sun J", "Hu Y", "Huang H", "Pei S", "Wang D"],
+    tags: ["AML", "BLVRB", "Immunotherapy", "Tumor microenvironment"],
+    summaryEn: "Reported that targeting BLVRB overcomes immunosuppression and potentiates immunotherapy in monocytic acute myeloid leukemia (AML), nominating BLVRB as a therapeutic target for this poor-prognosis AML subtype.",
+    summaryZh: "报道靶向BLVRB可克服单核细胞型急性髓系白血病（AML）的免疫抑制并增强免疫治疗疗效，提示BLVRB是该预后不良亚型的潜在治疗靶点。"
+  },
+  {
+    id: "npjpo2026",
+    module: "postdoc",
+    zone1: true,
+    featuredOrder: 4,
+    title: "TIGIT Preserves Memory and Enhances Antitumor Potency of CAR-T Cells",
+    journal: "npj Precision Oncology",
+    year: 2026,
+    volume: "",
+    statusEn: "Revision submitted",
+    statusZh: "返修稿已提交",
+    citations: 0,
+    featured: false,
+    role: true,
+    roleEn: "First author",
+    roleZh: "第一作者",
+    authors: ["Mo Z", "Liang X", "Wang J", "Wang K", "Su M", "Feng Y", "Hu Y", "Huang H", "Wang D"],
+    tags: ["CAR-T", "TIGIT", "T cell memory", "Cellular immunotherapy"],
+    summaryEn: "Showed that TIGIT preserves the memory phenotype of CAR-T cells and enhances their antitumor potency, providing a rationale for engineering TIGIT into next-generation CAR-T products.",
+    summaryZh: "发现TIGIT可维持CAR-T细胞的记忆表型并增强其抗肿瘤效力，为下一代CAR-T产品的工程化改造提供了依据。"
+  },
   {
     id: "jtcm2024",
     module: "phd",
@@ -568,7 +614,7 @@ const I18N = {
     "about.title": "About Me",
     "about.p1": "I am a postdoctoral researcher at the Bone Marrow Transplantation Center of the First Affiliated Hospital, Zhejiang University School of Medicine, and the Liangzhu Laboratory. My research career has progressed through three complementary phases: systematic reviews and network meta-analyses in evidence-based medicine, tumor-microenvironment studies of hepatocellular carcinoma (HCC), and cellular immunotherapy for blood cancers.",
     "about.p2": "In my HCC research, I integrated bioinformatics, single-cell and spatial transcriptomics, and machine-learning models to decode the immunosuppressive tumor microenvironment, uncovering hypoxia-, methylation- and immune-related signatures with prognostic and immunotherapeutic value.",
-    "about.p3": "My current work focuses on engineering chimeric antigen receptor (CAR) T and NK cells \u2014 including iPSC-derived \u201coff-the-shelf\u201d CAR-NK cells \u2014 and integrating CAR-based bridging therapy with allogeneic hematopoietic stem-cell transplantation. This work has been published in the New England Journal of Medicine and Cell Reports Medicine.",
+    "about.p3": "My current work focuses on engineering chimeric antigen receptor (CAR) T and NK cells \u2014 including iPSC-derived \u201coff-the-shelf\u201d CAR-NK cells \u2014 and integrating CAR-based bridging therapy with allogeneic hematopoietic stem-cell transplantation. This work has been published in Cancer Discovery (accepted), the New England Journal of Medicine and Cell Reports Medicine.",
     "about.chip1": "Cellular Immunotherapy",
     "about.chip2": "HCC & Tumor Microenvironment",
     "about.chip3": "Network Meta-analysis",
@@ -633,12 +679,16 @@ const I18N = {
     "pubs.footnote": "For the most up-to-date list, see my Google Scholar profile.",
     "news.kicker": "News",
     "news.title": "News & Updates",
-    "news.n1Title": "CD19 CAR-T long-term follow-up published",
-    "news.n1Desc": "Our long-term follow-up study of CD19 CAR-T in relapsed/refractory B-cell NHL — identifying Ki-67 as a prognostic factor for sustained remission — is out in Transplantation and Cellular Therapy.",
-    "news.n2Title": "iPSC-derived CAR-NK cells in Cell Reports Medicine",
-    "news.n2Desc": "Our study on CD70-targeted iPSC-derived CAR-NK cells — potent against tumors and alloreactive T cells — was published in Cell Reports Medicine.",
-    "news.n3Title": "Landmark study in the New England Journal of Medicine",
-    "news.n3Desc": "Sequential CD7 CAR T-cell therapy followed by allogeneic HSCT without GVHD prophylaxis — a new paradigm for T-ALL/LBL — published in NEJM.",
+    "news.n1Title": "BLVRB study accepted at Cancer Discovery",
+    "news.n1Desc": "Our study showing that targeting BLVRB overcomes immunosuppression and potentiates immunotherapy in monocytic AML has been accepted by Cancer Discovery.",
+    "news.n2Title": "TIGIT CAR-T manuscript revised at npj Precision Oncology",
+    "news.n2Desc": "Our manuscript showing that TIGIT preserves memory and enhances the antitumor potency of CAR-T cells has been revised and resubmitted to npj Precision Oncology.",
+    "news.n3Title": "CD19 CAR-T long-term follow-up published",
+    "news.n3Desc": "Our long-term follow-up study of CD19 CAR-T in relapsed/refractory B-cell NHL — identifying Ki-67 as a prognostic factor for sustained remission — is out in Transplantation and Cellular Therapy.",
+    "news.n4Title": "iPSC-derived CAR-NK cells in Cell Reports Medicine",
+    "news.n4Desc": "Our study on CD70-targeted iPSC-derived CAR-NK cells — potent against tumors and alloreactive T cells — was published in Cell Reports Medicine.",
+    "news.n5Title": "Landmark study in the New England Journal of Medicine",
+    "news.n5Desc": "Sequential CD7 CAR T-cell therapy followed by allogeneic HSCT without GVHD prophylaxis — a new paradigm for T-ALL/LBL — published in NEJM.",
     "contact.kicker": "Contact",
     "contact.title": "Get in Touch",
     "contact.emailTitle": "Email",
@@ -674,7 +724,7 @@ const I18N = {
     "about.title": "关于我",
     "about.p1": "我是浙江大学医学院附属第一医院骨髓移植中心与良渚实验室的博士后研究员。我的研究生涯历经三个阶段，环环相扣：循证医学的系统评价与网状Meta分析、肝细胞癌（HCC）肿瘤微环境研究，以及血液肿瘤的细胞免疫治疗。",
     "about.p2": "在HCC研究中，我将生物信息学、单细胞与空间转录组学以及机器学习模型相结合，解码免疫抑制性肿瘤微环境，揭示了缺氧、甲基化及免疫相关分子特征在预后与免疫治疗中的价值。",
-    "about.p3": "当前我的研究聚焦于工程化嵌合抗原受体（CAR）T细胞与NK细胞\u2014\u2014包括iPSC来源的\u201c现货型\u201dCAR-NK细胞\u2014\u2014并将CAR桥接治疗与异基因造血干细胞移植相结合。相关成果发表于《新英格兰医学杂志》与《Cell Reports Medicine》。",
+    "about.p3": "当前我的研究聚焦于工程化嵌合抗原受体（CAR）T细胞与NK细胞\u2014\u2014包括iPSC来源的\u201c现货型\u201dCAR-NK细胞\u2014\u2014并将CAR桥接治疗与异基因造血干细胞移植相结合。相关成果发表于《Cancer Discovery》（已接收）、《新英格兰医学杂志》（NEJM）与《Cell Reports Medicine》。",
     "about.chip1": "细胞免疫治疗",
     "about.chip2": "HCC 与肿瘤微环境",
     "about.chip3": "网状Meta分析",
@@ -739,12 +789,16 @@ const I18N = {
     "pubs.footnote": "最新完整列表请见我的 Google Scholar 主页。",
     "news.kicker": "动态",
     "news.title": "最新动态",
-    "news.n1Title": "CD19 CAR-T 长期随访研究发表",
-    "news.n1Desc": "我们在复发/难治性B细胞NHL中的CD19 CAR-T长期随访研究——揭示Ki-67是持续缓解的预后因素——发表于《Transplantation and Cellular Therapy》。",
-    "news.n2Title": "iPSC来源CAR-NK细胞登上 Cell Reports Medicine",
-    "news.n2Desc": "我们关于CD70靶向iPSC来源CAR-NK细胞（对肿瘤与同种异体反应性T细胞均具强效活性）的研究发表于《Cell Reports Medicine》。",
-    "news.n3Title": "NEJM 里程碑式研究",
-    "news.n3Desc": "序贯CD7 CAR-T治疗后行不行GVHD预防的异基因HSCT——T-ALL/LBL治疗新范式——发表于《新英格兰医学杂志》（NEJM）。",
+    "news.n1Title": "BLVRB 研究被 Cancer Discovery 接收",
+    "news.n1Desc": "我们关于靶向BLVRB可克服单核细胞型AML免疫抑制、增强免疫治疗疗效的研究已被《Cancer Discovery》接收。",
+    "news.n2Title": "TIGIT CAR-T 论文在 npj Precision Oncology 完成返修",
+    "news.n2Desc": "我们关于TIGIT可维持CAR-T细胞记忆表型、增强抗肿瘤效力的论文已完成修回并重新提交至《npj Precision Oncology》。",
+    "news.n3Title": "CD19 CAR-T 长期随访研究发表",
+    "news.n3Desc": "我们在复发/难治性B细胞NHL中的CD19 CAR-T长期随访研究——揭示Ki-67是持续缓解的预后因素——发表于《Transplantation and Cellular Therapy》。",
+    "news.n4Title": "iPSC来源CAR-NK细胞登上 Cell Reports Medicine",
+    "news.n4Desc": "我们关于CD70靶向iPSC来源CAR-NK细胞（对肿瘤与同种异体反应性T细胞均具强效活性）的研究发表于《Cell Reports Medicine》。",
+    "news.n5Title": "NEJM 里程碑式研究",
+    "news.n5Desc": "序贯CD7 CAR-T治疗后行不行GVHD预防的异基因HSCT——T-ALL/LBL治疗新范式——发表于《新英格兰医学杂志》（NEJM）。",
     "contact.kicker": "联系",
     "contact.title": "与我联系",
     "contact.emailTitle": "邮箱",
@@ -820,6 +874,10 @@ function pubCard(p, lang) {
   const roleBadge = p.role
     ? '<span class="pub-badge badge-role">' + (lang === "zh" ? p.roleZh : p.roleEn) + "</span>"
     : "";
+  // Optional status badge for accepted / in-revision papers (no volume yet)
+  const statusBadge = p.statusEn
+    ? '<span class="pub-badge badge-status">' + (lang === "zh" ? p.statusZh : p.statusEn) + "</span>"
+    : "";
   const summary = lang === "zh" ? p.summaryZh : p.summaryEn;
   const titleLink = p.doi
     ? '<a href="https://doi.org/' + p.doi + '" target="_blank" rel="noopener">' + p.title + "</a>"
@@ -837,6 +895,7 @@ function pubCard(p, lang) {
   return (
     '<article class="pub-card' + (featured ? " featured" : "") + '">' +
       roleBadge +
+      statusBadge +
       badge +
       '<h3 class="pub-title">' + titleLink + "</h3>" +
       '<p class="pub-authors">' + renderAuthors(p.authors) + "</p>" +
@@ -894,9 +953,11 @@ const FEATURED_ROLE = {
 };
 
 function renderFeatured(lang) {
+  // NOTE: use a null check rather than `||` so that featuredOrder: 0 sorts first
+  const order = (p) => (p.featuredOrder === undefined || p.featuredOrder === null ? 99 : p.featuredOrder);
   const featured = PUBS_FIRST_AUTHOR.concat(PUBS_COAUTHOR)
     .filter((p) => p.zone1)
-    .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
+    .sort((a, b) => order(a) - order(b))
     .map((p) => {
       const c = Object.assign({}, p);
       if (FEATURED_ROLE[p.id]) {
